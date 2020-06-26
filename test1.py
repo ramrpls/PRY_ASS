@@ -31,7 +31,8 @@ tabControl.pack(expand=1,fill="both")
 global etiqueta
 etiqueta=0
 global durations
-durations=["00:00:01","00:00:02","00:00:03"]
+durations=[]
+
 #Función para iniciar grabación 
 def StartRecording():
     global etiqueta
@@ -40,7 +41,9 @@ def StartRecording():
     M=int(sBox2.get())*60
     S=int(sBox3.get())
     global durations
-    durations.append(sBox1.get()+':'+sBox2.get()+':'+sBox3.get()) #Adds duration of recording to array for further use
+    durations.append(sBox1.get()) #Adds duration of recording to array for further use
+    durations.append(sBox2.get()) #Adds duration of recording to array for further use
+    durations.append(sBox3.get()) #Adds duration of recording to array for further use
     fs = 46100 #Sample Rate
     seconds = (H+M+S) #Duration of recording
     recording = sd.rec(int(seconds*fs), samplerate=fs, channels=2,dtype=np.int16)
@@ -53,10 +56,18 @@ def OpenPath(event):
 
 #Función para mostrar duración de cada grabación
 def ShowDuration(x):
-    label = Label(frame4, text=durations[x-1])
-    label.grid(row=x, column=1, sticky="nsew", padx=1, pady=1)
-    # label.bind("<Button>",OpenPath)
-
+    if x==1:
+        label = Label(frame4, text='Horas: '+durations[x-1]+'\n'+'Minutos: '+durations[x]+'\n'+'Segundos: '+durations[x+1])
+        label.grid(row=x, column=1, sticky="nsew", padx=1, pady=1)
+    
+    if x==2:
+        label = Label(frame4, text='Horas: '+durations[x+1]+'\n'+'Minutos: '+durations[x+2]+'\n'+'Segundos: '+durations[x+3])
+        label.grid(row=x, column=1, sticky="nsew", padx=1, pady=1)
+    
+    if x==3:
+        label = Label(frame4, text='Horas: '+durations[x+3]+'\n'+'Minutos: '+durations[x+4]+'\n'+'Segundos: '+durations[x+5])
+        label.grid(row=x, column=1, sticky="nsew", padx=1, pady=1)
+    
 #Funcion para guardar figuras de onda y mostrarlas(#1)
 def Save_Show_Wave_Spec(x):
     WaveIn = read_wave('outputRecording'+str(x)+'.wav')
