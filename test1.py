@@ -113,7 +113,7 @@ frame.place(relx=0.4, rely=0.3, relwidth=0.2, relheight=0.1)
 frame4 = tk.Frame(tab2, bg='#b3ccff', bd=1)
 frame4.place(relx=0, rely=0, relwidth=1.2, relheight=1.3)
 
-#Frame, for filter description
+#Frames, for filter description
 frame6 = tk.Frame(tab3, bg='#b3ccff', bd=1)#Titulo Filtros
 frame6.place(relx=0, rely=0, relwidth=0.4, relheight=0.06)
 
@@ -122,6 +122,16 @@ frame3.place(relx=0, rely=0.05, relwidth=0.4, relheight=1.3)
 
 frame5 = tk.Frame(tab3, bg='#b3ccff', bd=1)#SpinBoxes Filtros
 frame5.place(relx=0.4, rely=0, relwidth=0.8, relheight=1.3)
+
+#Frame, for results #1 
+frame7 = tk.Frame(tab4, bg='#b3ccff', bd=1)
+frame7.place(relx=0, rely=0, relwidth=1.2, relheight=1.3)
+#Frame, for results #1 
+frame8 = tk.Frame(tab5, bg='#b3ccff', bd=1)
+frame8.place(relx=0, rely=0, relwidth=1.2, relheight=1.3)
+#Frame, for results #1 
+frame9 = tk.Frame(tab6, bg='#b3ccff', bd=1)
+frame9.place(relx=0, rely=0, relwidth=1.2, relheight=1.3)
 
 #-----------------------------------------------------------Pestaña-Grabar-----------------------------------------------------------------------#
 #------------------------------------FRAME #1------------------------------------------#
@@ -234,6 +244,110 @@ label.grid(row=0, column=5, sticky="nsew", padx=1, pady=1)
 #Columna #7(Espectro antes del filtro)
 label = Label(frame4, text="Espectro Original")
 label.grid(row=0, column=6, sticky="nsew", padx=1, pady=1)
+
+#-----------------------------------------------------------Pestaña-Resultados#1-----------------------------------------------------------------------#
+#----------------------------------FRAME #7--------------------------------------------#
+#Creates Grid for signals info.
+#Columna #0(Título)
+label = Label(frame7, text="Título")
+label.grid(row=0, column=0, sticky="nsew", padx=1, pady=1)
+label = Label(frame7, text="Señal Filtrada #1")
+label.grid(row=1, column=0, sticky="nsew", padx=1, pady=1)
+#Columna #1(Duración)
+label = Label(frame7, text="Duración")
+label.grid(row=0, column=1, sticky="nsew", padx=1, pady=1)
+#Columna #2(Ubicación)
+label = Label(frame7, text="Ubicación")
+label.grid(row=0, column=2, sticky="nsew", padx=1, pady=1)
+labelx = Label(frame7, text='Ubicación') 
+labelx.grid(row=1, column=2, sticky="nsew", padx=1, pady=1)
+labelx.bind("<Button>",OpenPath)
+#Columna #3(Botón de play)
+label = Label(frame7, text="Reproducir Señal")
+label.grid(row=0, column=3, sticky="nsew", padx=1, pady=1)
+btn9 = tk.Button(frame7, text="Play Filtered Signal #1")
+btn9.grid(row=1, column=3, sticky="nsew", padx=1, pady=1)
+#Columna #4(Botones para mostrar onda y espectro)
+label = Label(frame7, text="Mostrar Datos")
+label.grid(row=0, column=4, sticky="nsew", padx=1, pady=1)
+btn10 = tk.Button(frame7, text="Mostrar Datos")#Añadir parametro command para mostrar datos
+btn10.grid(row=1, column=4, sticky="nsew", padx=1, pady=1)
+#Columna #5(Onda antes del filtro)
+label = Label(frame7, text="Onda Original")
+label.grid(row=0, column=5, sticky="nsew", padx=1, pady=1)
+#Columna #7(Espectro antes del filtro)
+label = Label(frame7, text="Espectro Original")
+label.grid(row=0, column=6, sticky="nsew", padx=1, pady=1)
+
+#-----------------------------------------------------------Pestaña-Resultados#2-----------------------------------------------------------------------#
+#----------------------------------FRAME #8--------------------------------------------#
+#Creates Grid for signals info.
+#Columna #0(Título)
+label = Label(frame8, text="Título")
+label.grid(row=0, column=0, sticky="nsew", padx=1, pady=1)
+label = Label(frame8, text="Señal Filtrada #2")
+label.grid(row=1, column=0, sticky="nsew", padx=1, pady=1)
+#Columna #1(Duración)
+label = Label(frame8, text="Duración")
+label.grid(row=0, column=1, sticky="nsew", padx=1, pady=1)
+#Columna #2(Ubicación)
+label = Label(frame8, text="Ubicación")
+label.grid(row=0, column=2, sticky="nsew", padx=1, pady=1)
+labelx = Label(frame8, text='Ubicación') 
+labelx.grid(row=1, column=2, sticky="nsew", padx=1, pady=1)
+labelx.bind("<Button>",OpenPath)
+#Columna #3(Botón de play)
+label = Label(frame8, text="Reproducir Señal")
+label.grid(row=0, column=3, sticky="nsew", padx=1, pady=1)
+btn9 = tk.Button(frame8, text="Play Filtered Signal #2")
+btn9.grid(row=1, column=3, sticky="nsew", padx=1, pady=1)
+#Columna #4(Botones para mostrar onda y espectro)
+label = Label(frame8, text="Mostrar Datos")
+label.grid(row=0, column=4, sticky="nsew", padx=1, pady=1)
+btn10 = tk.Button(frame8, text="Mostrar Datos")#Añadir parametro command para mostrar datos
+btn10.grid(row=1, column=4, sticky="nsew", padx=1, pady=1)
+#Columna #5(Onda antes del filtro)
+label = Label(frame8, text="Onda Original")
+label.grid(row=0, column=5, sticky="nsew", padx=1, pady=1)
+#Columna #7(Espectro antes del filtro)
+label = Label(frame8, text="Espectro Original")
+label.grid(row=0, column=6, sticky="nsew", padx=1, pady=1)
+#-----------------------------------------------------------Pestaña-Resultados#3-----------------------------------------------------------------------#
+#----------------------------------FRAME #9--------------------------------------------#
+#Creates Grid for signals info.
+#Columna #0(Título)
+label = Label(frame9, text="Título")
+label.grid(row=0, column=0, sticky="nsew", padx=1, pady=1)
+label = Label(frame9, text="Señal Filtrada #3")
+label.grid(row=1, column=0, sticky="nsew", padx=1, pady=1)
+#Columna #1(Duración)
+label = Label(frame9, text="Duración")
+label.grid(row=0, column=1, sticky="nsew", padx=1, pady=1)
+#Columna #2(Ubicación)
+label = Label(frame9, text="Ubicación")
+label.grid(row=0, column=2, sticky="nsew", padx=1, pady=1)
+labelx = Label(frame9, text='Ubicación') 
+labelx.grid(row=1, column=2, sticky="nsew", padx=1, pady=1)
+labelx.bind("<Button>",OpenPath)
+#Columna #3(Botón de play)
+label = Label(frame9, text="Reproducir Señal")
+label.grid(row=0, column=3, sticky="nsew", padx=1, pady=1)
+btn9 = tk.Button(frame9, text="Play Filtered Signal #3")
+btn9.grid(row=1, column=3, sticky="nsew", padx=1, pady=1)
+#Columna #4(Botones para mostrar onda y espectro)
+label = Label(frame9, text="Mostrar Datos")
+label.grid(row=0, column=4, sticky="nsew", padx=1, pady=1)
+btn10 = tk.Button(frame9, text="Mostrar Datos")#Añadir parametro command para mostrar datos
+btn10.grid(row=1, column=4, sticky="nsew", padx=1, pady=1)
+#Columna #5(Onda antes del filtro)
+label = Label(frame9, text="Onda Original")
+label.grid(row=0, column=5, sticky="nsew", padx=1, pady=1)
+#Columna #7(Espectro antes del filtro)
+label = Label(frame9, text="Espectro Original")
+label.grid(row=0, column=6, sticky="nsew", padx=1, pady=1)
+
+
+
 
 
 root.mainloop()
