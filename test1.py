@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Label, ttk, Radiobutton
+from tkinter import Label, ttk
 import datetime
 import sounddevice as sd
 from scipy.io.wavfile import write
@@ -114,8 +114,14 @@ frame4 = tk.Frame(tab2, bg='#b3ccff', bd=1)
 frame4.place(relx=0, rely=0, relwidth=1.2, relheight=1.3)
 
 #Frame, for filter description
-frame3 = tk.Frame(tab3, bg='#b3ccff', bd=1)
-frame3.place(relx=0, rely=0, relwidth=0.8, relheight=0.8)
+frame6 = tk.Frame(tab3, bg='#b3ccff', bd=1)#Titulo Filtros
+frame6.place(relx=0, rely=0, relwidth=0.4, relheight=0.06)
+
+frame3 = tk.Frame(tab3, bg='#b3ccff', bd=1)#Info Filtros
+frame3.place(relx=0, rely=0.05, relwidth=0.4, relheight=1.3)
+
+frame5 = tk.Frame(tab3, bg='#b3ccff', bd=1)#SpinBoxes Filtros
+frame5.place(relx=0.4, rely=0, relwidth=0.8, relheight=1.3)
 
 #-----------------------------------------------------------Pestaña-Grabar-----------------------------------------------------------------------#
 #------------------------------------FRAME #1------------------------------------------#
@@ -137,50 +143,45 @@ label=Label(frame, text="Segs", bg="#b3ccff")
 label.place(relx=0.81, rely=0)
 
 #-----------------------------------------------------------Pestaña-Filtros-----------------------------------------------------------------------#
-#----------------------------------FRAME #3--------------------------------------------#
+#----------------------------------FRAME #6--------------------------------------------#
 #Descripciones de filtros
-label = Label(frame3, text="A continuación se presenta un listado de los \nfiltros disponibles con una breve descripción:", bg="#b3ccff")
+label = Label(frame6, text="A continuación se presenta un listado de los \nfiltros disponibles con una breve descripción:", bg="#b3ccff")
 label.place(relx=0, rely=0)
-
+#----------------------------------FRAME #3--------------------------------------------#
 #'Tabla' para mostrar información de filtros disponibles
 label = Label(frame3, text="Título")
-label.place(relx=0, rely=0.08)
+label.grid(row=0, column=0, sticky="nsew", padx=1, pady=1)
 label = Label(frame3, text="Filtro #1")
-label.place(relx=0, rely=0.1)
+label.grid(row=1, column=0, sticky="nsew", padx=1, pady=1)
 label = Label(frame3, text="Filtro #2")
-label.place(relx=0, rely=0.12)
+label.grid(row=2, column=0, sticky="nsew", padx=1, pady=1)
 label = Label(frame3, text="Filtro #3")
-label.place(relx=0, rely=0.14)
-# label = Label(frame3, text="Función")
-# label.grid(row=0, column=1, sticky="nsew", padx=1, pady=1)
-# label = Label(frame3, text="Filtro #1")
-# label.grid(row=1, column=0, sticky="nsew", padx=1, pady=1)
-# label = Label(frame3, text="Filtro #2")
-# label.grid(row=2, column=0, sticky="nsew", padx=1, pady=1)
-# label = Label(frame3, text="Filtro #3")
-# label.grid(row=3, column=0, sticky="nsew", padx=1, pady=1)
-# label = Label(frame3, text="Descripción de Filtro #1")
-# label.grid(row=1, column=1, sticky="nsew", padx=1, pady=1)
-# label = Label(frame3, text="Descripción de Filtro #2")
-# label.grid(row=2, column=1, sticky="nsew", padx=1, pady=1)
-# label = Label(frame3, text="Descripción de Filtro #3")
-# label.grid(row=3, column=1, sticky="nsew", padx=1, pady=1)
+label.grid(row=3, column=0, sticky="nsew", padx=1, pady=1)
+label = Label(frame3, text="Descripción")
+label.grid(row=0, column=1, sticky="nsew", padx=1, pady=1)
+label = Label(frame3, text="Insertar EN ESTE TEXTO Descripción de Filtro #1")
+label.grid(row=1, column=1, sticky="nsew", padx=1, pady=1)
+label = Label(frame3, text="Insertar EN ESTE TEXTO Descripción de Filtro #2")
+label.grid(row=2, column=1, sticky="nsew", padx=1, pady=1)
+label = Label(frame3, text="Insertar EN ESTE TEXTO Descripción de Filtro #3")
+label.grid(row=3, column=1, sticky="nsew", padx=1, pady=1)
 
+#----------------------------------FRAME #5--------------------------------------------#
 #Selección de filtro y señal a filtrar
 F = ["Filtro #1","Filtro #2","Filtro #3"]
 S = ["Señal #1","Señal #2","Señal #3"]
 #Creating SpinBoxes
-sBox4= tk.Spinbox(frame3, values=S,wrap=True) #Señales
-sBox4.place(relx=0.58, rely=0.01, relwidth=0.07, relheight=0.04)
-label=Label(frame3, text="Seleccione la señal \nque desea filtrar:", bg="#b3ccff")
-label.place(relx=0.45, rely=0)
-sBox5= tk.Spinbox(frame3, values=F,wrap=True) #Filtros
-sBox5.place(relx=0.60, rely=0.08, relwidth=0.07, relheight=0.04)
-label=Label(frame3, text="Seleccione filtro para filtrar \nla señal seleccionada:", bg="#b3ccff")
-label.place(relx=0.45, rely=0.09)
+sBox4= tk.Spinbox(frame5, values=S,wrap=True) #Señales
+sBox4.place(relx=0.12, rely=0.01, relwidth=0.1, relheight=0.02)
+label=Label(frame5, text="Seleccione la señal \nque desea filtrar:", bg="#b3ccff")
+label.place(relx=0, rely=0)
+sBox5= tk.Spinbox(frame5, values=F,wrap=True) #Filtros
+sBox5.place(relx=0.15, rely=0.1, relwidth=0.1, relheight=0.02)
+label=Label(frame5, text="Seleccione filtro para filtrar \nla señal seleccionada:", bg="#b3ccff")
+label.place(relx=0, rely=0.09)
 #Creating Filter Button
-btn8 = tk.Button(frame3, text="Filtrar", command= lambda: FiltrarS())
-btn8.place(relx=0.48, rely=0.18)
+btn8 = tk.Button(frame5, text="Filtrar", command= lambda: FiltrarS())
+btn8.place(relx=0.05, rely=0.14, relwidth=0.04, relheight=0.04)
 
 #-----------------------------------------------------------Pestaña-Datos-----------------------------------------------------------------------#
 #----------------------------------FRAME #4--------------------------------------------#
