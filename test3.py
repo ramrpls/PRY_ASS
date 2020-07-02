@@ -1,31 +1,41 @@
-import tkinter as tk
-from tkinter import ttk, Label
-from PIL import Image, ImageTk
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider, Button, RadioButtons
+import thinkdsp
+
+fig, ax = plt.subplots()
+plt.subplots_adjust(left=0.25, bottom=0.25)
+t = np.arange(0.0, 1.0, 0.001)
+a0 = 5
+f0 = 3
+s = thinkdsp.('outputRecording3.wav')
+l, = plt.plot(t, s, lw=2, color='red')
+plt.axis([0, 1, -10, 10])
+
+axcolor = 'lightgoldenrodyellow'
+axfreq = plt.axes([0.25, 0.1, 0.65, 0.03], facecolor=axcolor)
+axamp = plt.axes([0.25, 0.15, 0.65, 0.03], facecolor=axcolor)
+
+sfreq = Slider(axfreq, 'Freq', 0.1, 30.0, valinit=f0)
+samp = Slider(axamp, 'Amp', 0.1, 10.0, valinit=a0)
 
 
-root = tk.Tk()
-root.geometry('1300x700')
-root.configure(background='#b3ccff')
-tabControl= ttk.Notebook(root)
-tab1=ttk.Frame(tabControl)
-tab2=ttk.Frame(tabControl)
-tabControl.add(tab1, text='Tab #1')
-tabControl.add(tab2, text='Tab #2')
-tabControl.pack(expand=1,fill="both")
+def update(val):
+    amp = samp.val
+    freq = sfreq.val
+    l.set_ydata(amp*np.sin(2*np.pi*freq*t))
+    fig.canvas.draw_idle()
+sfreq.on_changed(update)
+samp.on_changed(update)
+
+resetax = plt.axes([0.8, 0.025, 0.1, 0.04])
+button = Button(resetax, 'Reset', color=axcolor, hovercolor='0.975')
 
 
-frame = tk.Frame(tab1, bg='#cc3300', bd=1)
-frame.place(relx=0, rely=0.15, relwidth=0.2, relheight=0.1)
-load=Image.open('293.JPG')
-render = ImageTk.PhotoImage(load)
-img = Label(tab1, image=render)
-img.image = render
-img.place(x=0,y=0)
+def reset(event):
+    sfreq.reset()
+    samp.reset()
+button.on_clicked(reset)
 
-image = Image.open('293.JPG')
-image = image.resize((int((image.width)-((image.width)*0.32)),int((image.height)-((image.height)*0.32))), Image.ANTIALIAS)
-render = ImageTk.PhotoImage(image)
-img = Label(tab2, image=render)
-img.place(x=0,y=0)
-# int((image.height)-((image.height)*0.32))
-root.mainloop()
+
+plt.show()
