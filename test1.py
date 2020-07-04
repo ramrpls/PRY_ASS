@@ -8,6 +8,8 @@ import numpy as np
 from thinkdsp import read_wave
 import matplotlib.pyplot as plt
 from PIL import Image, ImageTk
+import winsound
+
 
 root = tk.Tk()
 root.geometry('1300x700')
@@ -99,6 +101,12 @@ def Save_Show_Wave_Spec(x):
     sIn_Label.image=render2
     sIn_Label.grid(row=x, column=6, sticky="nsew", padx=1, pady=1)
     ShowDuration(x)
+ #Reproducir audio
+def play_sound(x):
+    winsound.PlaySound('outputRecording'+str(x)+'.wav', winsound.SND_FILENAME)
+#Repdroducir audio filtrado
+#def play_filtered_audio(x):
+    #winsound.PlaySound('outputRecording'+str(x)+'.wav', winsound.SND_FILENAME)
 
 #Función para filtrado de señal
 def FiltrarS():
@@ -221,13 +229,14 @@ labelx = Label(frame4, text='Ubicación #3') #Señal 3
 labelx.grid(row=3, column=2, sticky="nsew", padx=1, pady=1)
 labelx.bind("<Button>",OpenPath)
 #Columna #3(Botón de play)
+#Columna #3(Botón de play)
 label = Label(frame4, text="Reproducir Señal")
 label.grid(row=0, column=3, sticky="nsew", padx=1, pady=1)
-btn2 = tk.Button(frame4, text="Play Signal #1")
+btn2 = tk.Button(frame4, text="Play Signal #1", command= lambda :play_sound(1))
 btn2.grid(row=1, column=3, sticky="nsew", padx=1, pady=1)
-btn3 = tk.Button(frame4, text="Play Signal #2")
+btn3 = tk.Button(frame4, text="Play Signal #2",command= lambda :play_sound(2))
 btn3.grid(row=2, column=3, sticky="nsew", padx=1, pady=1)
-btn4 = tk.Button(frame4, text="Play Signal #3")
+btn4 = tk.Button(frame4, text="Play Signal #3",command= lambda :play_sound(3))
 btn4.grid(row=3, column=3, sticky="nsew", padx=1, pady=1)
 #Columna #4(Botones para mostrar onda y espectro)
 label = Label(frame4, text="Mostrar Datos")
@@ -278,6 +287,12 @@ label.grid(row=0, column=5, sticky="nsew", padx=1, pady=1)
 #Columna #7(Espectro antes del filtro)
 label = Label(frame7, text="Espectro Original")
 label.grid(row=0, column=6, sticky="nsew", padx=1, pady=1)
+#Columna #7 (Onda después del filtro)
+label = Label(frame7, text="Onda Filtrada")
+label.grid(row=0, column=7, sticky="nsew", padx=1, pady=1)
+#Columna #8 (Espectro después del filtro)
+label = Label(frame7, text="Espectro Filtrado")
+label.grid(row=0, column=8, sticky="nsew", padx=1, pady=1)
 
 #-----------------------------------------------------------Pestaña-Resultados#2-----------------------------------------------------------------------#
 #----------------------------------FRAME #8--------------------------------------------#
@@ -312,6 +327,12 @@ label.grid(row=0, column=5, sticky="nsew", padx=1, pady=1)
 #Columna #7(Espectro antes del filtro)
 label = Label(frame8, text="Espectro Original")
 label.grid(row=0, column=6, sticky="nsew", padx=1, pady=1)
+#Columna #7(onda filtrada)
+label = Label(frame8, text="Onda filtrada")
+label.grid(row=0, column=7, sticky="nsew", padx=1, pady=1)
+#Columna #6(Espectro filtrado)
+label = Label(frame8, text="Espectro filtrado")
+label.grid(row=0, column=8, sticky="nsew", padx=1, pady=1)
 #-----------------------------------------------------------Pestaña-Resultados#3-----------------------------------------------------------------------#
 #----------------------------------FRAME #9--------------------------------------------#
 #Creates Grid for signals info.
@@ -345,6 +366,12 @@ label.grid(row=0, column=5, sticky="nsew", padx=1, pady=1)
 #Columna #7(Espectro antes del filtro)
 label = Label(frame9, text="Espectro Original")
 label.grid(row=0, column=6, sticky="nsew", padx=1, pady=1)
+#Columna #7(onda filtrada)
+label = Label(frame9, text="Onda filtrada")
+label.grid(row=0, column=7, sticky="nsew", padx=1, pady=1)
+#Columna #8(Espectro filtrado)
+label = Label(frame9, text="Espectro filtrado")
+label.grid(row=0, column=8, sticky="nsew", padx=1, pady=1)
 
 
 
